@@ -1,5 +1,13 @@
 import Primeproject
 import TrialDivision
+import time
+
+def timed_call(func, *args):
+    start = time.perf_counter()
+    result = func(*args)
+    end = time.perf_counter()
+    print(f"{func.__name__}({args}) took {end - start:.8f} seconds")
+    return result
 
 if __name__ == "__main__":
 
@@ -32,4 +40,8 @@ if __name__ == "__main__":
     #test more cases that are meant to fail (fuzzing)
     for n, expected in Primeproject.adversarial_prime_tests(10, 100_000):
         print(f"{n} -> {expected}")
+
+
+    timed_call(Primeproject.sieve, 1000000)
+    timed_call(TrialDivision.generate_primes_trial, 1000000)
 

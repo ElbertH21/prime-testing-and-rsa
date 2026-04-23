@@ -1,6 +1,7 @@
 import random
 import TrialDivision
 
+
 #Generate Primes using Sieve of Eratosthenes
 def sieve(n):
     # Boolean array: True means "assume prime"
@@ -87,3 +88,4 @@ def adversarial_prime_tests(count, max_n):
         tests.append((n, expected))
 
     return tests
+
