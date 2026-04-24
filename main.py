@@ -12,14 +12,17 @@ if __name__ == "__main__":
  
     print(DIVIDER)
     print(f"Sieve Primes up to 50: \n{Primeproject.sieve(50)}\n")
- 
+
     print(DIVIDER)
-    print("Miller-Rabin up to 50:\n")
-    #print(MillerRabin.is_prime_miller_rabin(n, k=10))
- 
     #test both functions Trial/Sieve against each other
+    print("Test both functions Trial/Sieve against each other")
     Primeproject.random_range_prime_tests(10, 10_000)
     print()
+
+    print(DIVIDER)
+    
+    print("Miller-Rabin up to 50:\n")
+    print([n for n in range(2, 51) if MillerRabin.is_prime_miller_rabin(n, k=10)])
  
     print(DIVIDER)
     # Test prime checking on a handful of known cases
