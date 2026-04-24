@@ -1,8 +1,17 @@
 import Primeproject
 import TrialDivision
+import time
 import MillerRabin
- 
+
 DIVIDER = "\n" + "─" * 60 + "\n"
+
+def timed_call(func, *args):
+    start = time.perf_counter()
+    result = func(*args)
+    end = time.perf_counter()
+    print(f"{func.__name__}({args}) took {end - start:.8f} seconds")
+    return result
+ 
  
 if __name__ == "__main__":
  
@@ -56,3 +65,8 @@ if __name__ == "__main__":
     for n, expected in Primeproject.adversarial_prime_tests(10, 100_000):
         result = MillerRabin.is_prime_miller_rabin(n, k=10)
         print(f"{n} -> {result}")
+
+    print(DIVIDER)
+
+    timed_call(Primeproject.sieve, 1000000)
+    timed_call(TrialDivision.generate_primes_trial, 1000000)
