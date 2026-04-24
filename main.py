@@ -2,6 +2,7 @@ import Primeproject
 import TrialDivision
 import time
 import MillerRabin
+import RSA
 
 DIVIDER = "\n" + "─" * 60 + "\n"
 
@@ -70,3 +71,20 @@ if __name__ == "__main__":
 
     timed_call(Primeproject.sieve, 1000000)
     timed_call(TrialDivision.generate_primes_trial, 1000000)
+    timed_call(MillerRabin.is_prime_miller_rabin, 2**61 - 1)  # large Mersenne prime, 
+                                                               # more fair since Miller-Rabin is built 
+                                                               # to factor large numbers like this.
+
+
+    # RSA implementation
+    print(DIVIDER)
+    print("RSA Demo (512-bit):\n")
+    pub, priv = timed_call(RSA.generate_keypair, 512)
+    message = 42
+    ciphertext = RSA.encrypt(message, pub)
+    recovered = RSA.decrypt(ciphertext, priv)
+    print(f"  Original : {message}")
+    print(f"  Encrypted: {str(ciphertext)[:60]}...")
+    print(f"  Decrypted: {recovered}")
+    print(f"  Match    : {message == recovered}")
+
