@@ -17,7 +17,7 @@ breaks this assumption, which is why post-quantum cryptography is an active
 research area.
 """
 
-import random
+import secrets
 from MillerRabin import is_prime_miller_rabin
 
 
@@ -38,9 +38,7 @@ def _generate_large_prime(bits):
     O(k * bits^3) per prime — acceptable for bits <= 2048 in practice.
     """
     while True:
-        # Set the top two bits to 1 to guarantee the prime is `bits` bits long
-        # and large enough that p * q will be 2*bits bits long.
-        candidate = random.getrandbits(bits)
+        candidate = secrets.randbits(bits)
         candidate |= (1 << bits - 1) | (1 << bits - 2) | 1  # ensure odd + top bits set
         if is_prime_miller_rabin(candidate):
             return candidate

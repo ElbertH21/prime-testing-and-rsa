@@ -73,7 +73,7 @@ if __name__ == "__main__":
     timed_call(TrialDivision.generate_primes_trial, 1000000)
     timed_call(MillerRabin.is_prime_miller_rabin, 2**61 - 1)  # large Mersenne prime, 
                                                                # more fair since Miller-Rabin is built 
-                                                               # to factor large numbers like this.
+                                                               # to test very large numbers like this.
 
 
     # RSA implementation
